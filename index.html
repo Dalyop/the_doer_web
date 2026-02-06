@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Doer - Join fitness challenges, track your workouts, and connect with a global community of fitness enthusiasts.">
+    <meta name="keywords" content="fitness app, workout tracker, fitness challenges, running app, step counter, fitness community">
+    <meta name="author" content="The Doer">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Doer - Fitness Challenges & Community">
+    <meta property="og:description" content="Challenge yourself. Support others. Achieve together.">
+    <meta property="og:image" content="images/logo.png">
+
+    <title>The Doer - Fitness Challenges & Community</title>
+    <link rel="icon" type="image/png" href="images/logo_icon.png">
+    <link rel="apple-touch-icon" href="images/logo_icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #D4C5A0;
+            --gold-light: #E8DCC4;
+            --green: #7FFF00;
+            --green-dark: #5BC000;
+            --black: #0a0a0a;
+            --dark: #111111;
+            --gray-dark: #1a1a1a;
+            --gray: #888;
+            --gray-light: #aaa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 42px;
+            width: auto;
+        }
+
+        .nav-logo span {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212, 197, 160, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            opacity: 0.4;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 10, 10, 0.3) 0%,
+                rgba(10, 10, 10, 0.6) 50%,
+                rgba(10, 10, 10, 1) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(127, 255, 0, 0.1);
+            border: 1px solid rgba(127, 255, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            color: var(--green);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge i {
+            font-size: 10px;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(48px, 6vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--green) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--gray-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(212, 197, 160, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-phones {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 280px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+            border: 8px solid #222;
+            background: #000;
+        }
+
+        .phone-mockup img {
+            width: 100%;
+            display: block;
+        }
+
+        .phone-mockup:nth-child(2) {
+            position: absolute;
+            left: -80px;
+            top: 60px;
+            transform: scale(0.85);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .phone-mockup:nth-child(3) {
+            position: absolute;
+            right: -80px;
+            top: 60px;
+            transform: scale(0.85);
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: var(--gray-dark);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 197, 160, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--green) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--black);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* App Showcase */
+        .showcase {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--black) 0%, var(--dark) 50%, var(--black) 100%);
+        }
+
+        .showcase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .showcase-content.reverse {
+            direction: rtl;
+        }
+
+        .showcase-content.reverse > * {
+            direction: ltr;
+        }
+
+        .showcase-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .showcase-text p {
+            color: var(--gray-light);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .showcase-list {
+            list-style: none;
+        }
+
+        .showcase-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--gray-light);
+        }
+
+        .showcase-list i {
+            color: var(--green);
+            font-size: 18px;
+        }
+
+        .showcase-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .showcase-phone {
+            width: 300px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+            border: 8px solid #222;
+            background: #000;
+        }
+
+        .showcase-phone img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .download h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .download-subtitle {
+            color: var(--gray);
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 32px;
+            background: var(--gray-dark);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .store-btn:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .store-btn i {
+            font-size: 32px;
+        }
+
+        .store-btn .store-text {
+            text-align: left;
+        }
+
+        .store-btn .store-text span {
+            display: block;
+            font-size: 11px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .store-btn .store-text strong {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .download-phones {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .download-phone {
+            width: 220px;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+            border: 6px solid #222;
+            transition: transform 0.4s ease;
+        }
+
+        .download-phone:hover {
+            transform: translateY(-10px);
+        }
+
+        .download-phone img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo img {
+            height: 36px;
+        }
+
+        .footer-logo span {
+            font-family: 'Syne', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            background: var(--gray-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--gray-dark);
+            border-radius: 24px;
+            padding: 48px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content i {
+            font-size: 64px;
+            color: var(--gold);
+            margin-bottom: 24px;
+        }
+
+        .modal-content h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .modal-content p {
+            color: var(--gray);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .modal-close {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--gold-light);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                order: 1;
+            }
+
+            .hero-phones {
+                order: 2;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .showcase-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .showcase-content.reverse {
+                direction: ltr;
+            }
+
+            .showcase-text {
+                text-align: center;
+            }
+
+            .showcase-list {
+                display: inline-block;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phone-mockup {
+                width: 240px;
+            }
+
+            .phone-mockup:nth-child(2),
+            .phone-mockup:nth-child(3) {
+                display: none;
+            }
+
+            .download-phones {
+                flex-wrap: wrap;
+            }
+
+            .download-phone {
+                width: 160px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="images/logo_icon.png" alt="The Doer">
+            <span>THE DOER</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#showcase">App</a></li>
+            <li><a href="#download">Download</a></li>
+            <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a href="#download" class="nav-cta">Get the App</a>
+        <button class="mobile-menu" onclick="document.getElementById('download').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="images/running.png" alt="Running">
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-circle"></i>
+                        Now Available on Android
+                    </div>
+                    <h1>Be a <span class="gradient-text">Doer</span>, Not a Dreamer</h1>
+                    <p class="hero-subtitle">Join fitness challenges, track your workouts, and connect with a global community pushing each other to achieve more. Every step counts.</p>
+                    <div class="hero-buttons">
+                        <a href="#download" class="btn btn-primary">
+                            <i class="fab fa-google-play"></i> Download Now
+                        </a>
+                        <a href="#features" class="btn btn-secondary">
+                            <i class="fas fa-play"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-phones">
+                    <div class="phone-mockup">
+                        <img src="images/ios.png" alt="The Doer App">
+                    </div>
+                    <div class="phone-mockup">
+                        <img src="images/ios 1.png" alt="The Doer App">
+                    </div>
+                    <div class="phone-mockup">
+                        <img src="images/ios 2.png" alt="The Doer App">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything You Need to <span class="gradient-text">Succeed</span></h2>
+                <p>Powerful features designed to keep you motivated and on track with your fitness goals.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Epic Challenges</h3>
+                    <p>Create or join fitness challenges. Compete with friends, earn points, and climb the leaderboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Groups</h3>
+                    <p>Connect with like-minded fitness enthusiasts. Share progress and stay motivated together.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>GPS Tracking</h3>
+                    <p>Real-time tracking of your runs, walks, and workouts with detailed route maps and stats.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <h3>Step Counter</h3>
+                    <p>Track every step throughout your day. Set daily goals and watch your progress grow.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progress Insights</h3>
+                    <p>Detailed analytics and insights to understand your fitness journey and improve over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Rewards & Badges</h3>
+                    <p>Earn badges and rewards for completing challenges and hitting your fitness milestones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section 1 -->
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <div class="showcase-content">
+                <div class="showcase-text">
+                    <h2>Join Challenges That <span class="gradient-text">Push You Forward</span></h2>
+                    <p>Whether it's a 10K steps daily challenge or a monthly running competition, find the perfect challenge to match your goals.</p>
+                    <ul class="showcase-list">
+                        <li><i class="fas fa-check-circle"></i> Daily, weekly, and monthly challenges</li>
+                        <li><i class="fas fa-check-circle"></i> Create private challenges with friends</li>
+                        <li><i class="fas fa-check-circle"></i> Real-time leaderboards and rankings</li>
+                        <li><i class="fas fa-check-circle"></i> Win prizes and earn rewards</li>
+                    </ul>
+                </div>
+                <div class="showcase-image">
+                    <div class="showcase-phone">
+                        <img src="images/Screenshot_20260206-124650_De Doer.png" alt="Challenges">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section 2 -->
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-content reverse">
+                <div class="showcase-text">
+                    <h2>Find Your <span class="gradient-text">Fitness Tribe</span></h2>
+                    <p>Connect with communities that share your passion. From local running clubs to global fitness groups, find your people.</p>
+                    <ul class="showcase-list">
+                        <li><i class="fas fa-check-circle"></i> Join public or private groups</li>
+                        <li><i class="fas fa-check-circle"></i> Group chats and activity feeds</li>
+                        <li><i class="fas fa-check-circle"></i> Organize group challenges</li>
+                        <li><i class="fas fa-check-circle"></i> Celebrate wins together</li>
+                    </ul>
+                </div>
+                <div class="showcase-image">
+                    <div class="showcase-phone">
+                        <img src="images/Screenshot_20260206-124707_De Doer.png" alt="Community">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section 3 -->
+    <section class="showcase">
+        <div class="container">
+            <div class="showcase-content">
+                <div class="showcase-text">
+                    <h2>Track Every <span class="gradient-text">Move You Make</span></h2>
+                    <p>From your morning run to your evening walk, track all your activities with precision GPS and smart sensors.</p>
+                    <ul class="showcase-list">
+                        <li><i class="fas fa-check-circle"></i> Accurate GPS route tracking</li>
+                        <li><i class="fas fa-check-circle"></i> Pace, distance, and time stats</li>
+                        <li><i class="fas fa-check-circle"></i> Activity history and trends</li>
+                        <li><i class="fas fa-check-circle"></i> Share your achievements</li>
+                    </ul>
+                </div>
+                <div class="showcase-image">
+                    <div class="showcase-phone">
+                        <img src="images/Screenshot_20260206-124818_De Doer.png" alt="Tracking">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <h2>Start Your Journey <span class="gradient-text">Today</span></h2>
+            <p class="download-subtitle">Download The Doer and join thousands of fitness enthusiasts worldwide.</p>
+
+            <div class="store-buttons">
+                <a href="https://play.google.com/store/apps/details?id=com.thedoer.app" class="store-btn" target="_blank">
+                    <i class="fab fa-google-play"></i>
+                    <div class="store-text">
+                        <span>Get it on</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+                <button class="store-btn" onclick="openModal()">
+                    <i class="fab fa-apple"></i>
+                    <div class="store-text">
+                        <span>Download on the</span>
+                        <strong>App Store</strong>
+                    </div>
+                </button>
+            </div>
+
+            <div class="download-phones">
+                <div class="download-phone">
+                    <img src="images/Screenshot_20260206-124650_De Doer.png" alt="The Doer">
+                </div>
+                <div class="download-phone">
+                    <img src="images/Screenshot_20260206-124707_De Doer.png" alt="The Doer">
+                </div>
+                <div class="download-phone">
+                    <img src="images/Screenshot_20260206-124849_De Doer.png" alt="The Doer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo_icon.png" alt="The Doer">
+                    <span>THE DOER</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="#download">Download</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="mailto:support@thedoer.app">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 The Doer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- iOS Coming Soon Modal -->
+    <div class="modal" id="iosModal">
+        <div class="modal-content">
+            <i class="fab fa-apple"></i>
+            <h3>Coming Soon</h3>
+            <p>The Doer for iOS is launching soon. Stay tuned!</p>
+            <button class="modal-close" onclick="closeModal()">Got it</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('iosModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('iosModal').classList.remove('active');
+        }
+
+        document.getElementById('iosModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
