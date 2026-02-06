@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Delete your The Doer account and associated data">
+    <title>Delete Account - The Doer</title>
+    <link rel="icon" type="image/png" href="images/logo_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4C5A0;
+            --green: #7FFF00;
+            --black: #0a0a0a;
+            --dark: #111111;
+            --gray-dark: #1a1a1a;
+            --gray: #888;
+            --gray-light: #bbb;
+            --white: #ffffff;
+            --red: #ff4757;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo img {
+            height: 48px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--red);
+        }
+
+        .subtitle {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        p {
+            color: var(--gray-light);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .steps {
+            background: var(--gray-dark);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 24px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--white);
+        }
+
+        .step-content p {
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            text-align: left;
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table th {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .data-table td {
+            color: var(--gray-light);
+            font-size: 15px;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .deleted {
+            color: var(--green);
+        }
+
+        .retained {
+            color: var(--gold);
+        }
+
+        .warning-box {
+            background: rgba(255, 71, 87, 0.1);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning-box p {
+            color: var(--red);
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        .contact-box {
+            background: var(--gray-dark);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-box h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .contact-box p {
+            margin-bottom: 20px;
+        }
+
+        .contact-box a {
+            color: var(--gold);
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        .email-template {
+            background: var(--dark);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--gray-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="logo">
+                <img src="images/logo_icon.png" alt="The Doer">
+                <span>THE DOER</span>
+            </a>
+            <h1>Delete Your Account</h1>
+            <p class="subtitle">Request deletion of your The Doer account and associated data</p>
+        </header>
+
+        <main>
+            <div class="section">
+                <h2>How to Delete Your Account</h2>
+                <p>You can delete your The Doer account and all associated data using one of the following methods:</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>In-App Deletion (Recommended)</h3>
+                            <p>Open The Doer app > Go to Profile > Settings > Delete Account > Confirm deletion</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Email Request</h3>
+                            <p>Send an email to <strong>privacy@thedoer.app</strong> with the subject "Delete My Account" and include your registered email address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>What Data Is Deleted</h2>
+                <p>When you delete your account, the following data will be permanently removed from our servers within 30 days:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Profile information (name, email, photo)</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>Fitness activity data (steps, runs, workouts)</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>Challenge participation and progress</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>Group memberships and messages</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>Location and route history</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>Badges and achievements</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                        <tr>
+                            <td>App preferences and settings</td>
+                            <td class="deleted">Deleted</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Data Retention</h2>
+                <p>Some data may be retained for a limited period after account deletion:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Retention Period</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transaction records</td>
+                            <td class="retained">7 years</td>
+                            <td>Legal/tax requirements</td>
+                        </tr>
+                        <tr>
+                            <td>Anonymized analytics</td>
+                            <td class="retained">Indefinite</td>
+                            <td>Cannot be linked to you</td>
+                        </tr>
+                        <tr>
+                            <td>Support ticket history</td>
+                            <td class="retained">90 days</td>
+                            <td>Quality assurance</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>Warning:</strong> Account deletion is permanent and cannot be undone. You will lose all your fitness history, achievements, and challenge progress. If you rejoin The Doer, you will start with a fresh account.</p>
+            </div>
+
+            <div class="contact-box">
+                <h3>Request Account Deletion</h3>
+                <p>Send your deletion request to:</p>
+                <a href="mailto:privacy@thedoer.app?subject=Delete%20My%20Account">privacy@thedoer.app</a>
+
+                <div class="email-template">
+                    Subject: Delete My Account<br><br>
+                    Hi,<br><br>
+                    I would like to delete my The Doer account.<br><br>
+                    Registered email: [your email]<br><br>
+                    Thank you.
+                </div>
+
+                <p style="margin-top: 24px; font-size: 14px;">We will process your request within 30 days and send confirmation to your email.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 The Doer. All rights reserved.</p>
+            <p style="margin-top: 8px;">
+                <a href="index.html">Home</a> ·
+                <a href="privacy.html">Privacy Policy</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
