@@ -26,8 +26,8 @@
         :root {
             --gold: #D4C5A0;
             --gold-light: #E8DCC4;
-            --green: #7FFF00;
-            --green-dark: #5BC000;
+            --green: #E7C77E;
+            --green-dark: #C9A85A;
             --black: #0a0a0a;
             --dark: #111111;
             --gray-dark: #1a1a1a;
@@ -216,8 +216,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(127, 255, 0, 0.1);
-            border: 1px solid rgba(127, 255, 0, 0.3);
+            background: rgba(231, 199, 126, 0.12);
+            border: 1px solid rgba(231, 199, 126, 0.35);
             padding: 8px 16px;
             border-radius: 50px;
             font-size: 13px;
@@ -522,6 +522,7 @@
             text-decoration: none;
             color: var(--white);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .store-btn:hover {
@@ -549,6 +550,26 @@
         .store-btn .store-text strong {
             font-size: 18px;
             font-weight: 700;
+        }
+
+        .waitlist-trigger {
+            background: linear-gradient(135deg, rgba(231, 199, 126, 0.18), rgba(212, 197, 160, 0.16));
+            border-color: rgba(231, 199, 126, 0.45);
+        }
+
+        .waitlist-trigger i {
+            color: var(--green);
+        }
+
+        .store-btn.coming-soon {
+            cursor: default;
+            opacity: 0.9;
+        }
+
+        .store-btn.coming-soon:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         .download-phones {
@@ -675,13 +696,14 @@
         }
 
         .modal-content {
-            background: var(--gray-dark);
+            background: linear-gradient(180deg, #1d1d1d 0%, #121212 100%);
             border-radius: 24px;
             padding: 48px;
             max-width: 480px;
             width: 100%;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
             animation: modalIn 0.3s ease;
         }
 
@@ -696,10 +718,11 @@
             }
         }
 
-        .modal-content i {
+        .modal-content .modal-icon {
             font-size: 64px;
             color: var(--gold);
             margin-bottom: 24px;
+            display: inline-block;
         }
 
         .modal-content h3 {
@@ -713,6 +736,119 @@
             color: var(--gray);
             font-size: 16px;
             margin-bottom: 32px;
+        }
+
+        .waitlist-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .waitlist-form input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #1a1a1a;
+            color: var(--white);
+            font-size: 16px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .waitlist-form input:focus {
+            outline: none;
+            border-color: rgba(212, 197, 160, 0.8);
+            box-shadow: 0 0 0 3px rgba(212, 197, 160, 0.18);
+        }
+
+        .platform-options {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .platform-options label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            background: linear-gradient(180deg, #242424 0%, #181818 100%);
+            color: var(--white);
+            font-weight: 600;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .platform-options label:hover {
+            transform: translateY(-1px);
+            border-color: rgba(212, 197, 160, 0.65);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+        }
+
+        .platform-options label i {
+            font-size: 18px;
+            line-height: 1;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .platform-options input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .platform-options input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--black);
+            border-color: var(--gold-light);
+            box-shadow: 0 14px 28px rgba(212, 197, 160, 0.25);
+        }
+
+        .platform-options input[type="radio"]:checked + label i {
+            color: var(--black);
+        }
+
+        .waitlist-form button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--black);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .waitlist-form button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(212, 197, 160, 0.28);
+        }
+
+        .waitlist-form button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: -4px;
+            margin-bottom: 2px;
+            display: none;
         }
 
         .modal-close {
@@ -788,6 +924,34 @@
                 display: none;
             }
 
+            .nav-links {
+                position: absolute;
+                top: 76px;
+                left: 20px;
+                right: 20px;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(17, 17, 17, 0.98);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 14px;
+                overflow: hidden;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 14px 18px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            }
+
+            .nav-links li:last-child a {
+                border-bottom: 0;
+            }
+
             .mobile-menu {
                 display: block;
             }
@@ -830,6 +994,16 @@
                 flex-wrap: wrap;
                 justify-content: center;
             }
+
+            .modal-content {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .platform-options {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -846,8 +1020,8 @@
             <li><a href="#download">Download</a></li>
             <li><a href="privacy.html">Privacy</a></li>
         </ul>
-        <a href="#download" class="nav-cta">Get the App</a>
-        <button class="mobile-menu" onclick="document.getElementById('download').scrollIntoView({behavior: 'smooth'})">
+        <a href="#download" class="nav-cta" onclick="openModal(); return false;">Join Waitlist</a>
+        <button class="mobile-menu" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
@@ -1027,10 +1201,10 @@
                         <strong>Google Play</strong>
                     </div>
                 </a>
-                <button class="store-btn" onclick="openModal()">
+                <button class="store-btn coming-soon" type="button" aria-disabled="true" title="iOS version coming soon">
                     <i class="fab fa-apple"></i>
                     <div class="store-text">
-                        <span>Download on the</span>
+                        <span>Coming Soon</span>
                         <strong>App Store</strong>
                     </div>
                 </button>
@@ -1079,14 +1253,28 @@
     <!-- iOS Coming Soon Modal -->
     <div class="modal" id="iosModal">
         <div class="modal-content">
-            <i class="fab fa-apple"></i>
-            <h3>Coming Soon</h3>
-            <p>The Doer for iOS is launching soon. Stay tuned!</p>
-            <button class="modal-close" onclick="closeModal()">Got it</button>
+            <i class="fab fa-apple modal-icon" aria-hidden="true"></i>
+            <h3>iOS Coming Soon</h3>
+            <p>The iOS app is coming soon. Join the waitlist and we will notify you first.</p>
+            <form class="waitlist-form" id="waitlistForm" novalidate>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <div class="error-message" id="emailError">Please enter a valid email.</div>
+                <div class="platform-options">
+                    <input type="radio" id="apple" name="platform" value="apple">
+                    <label for="apple"><i class="fab fa-apple"></i> Apple</label>
+                    <input type="radio" id="android" name="platform" value="android">
+                    <label for="android"><i class="fab fa-android"></i> Android</label>
+                </div>
+                <div class="error-message" id="platformError">Please select a platform.</div>
+                <button type="submit">Notify Me</button>
+            </form>
         </div>
     </div>
 
     <script>
+        // Replace with your real Formspree endpoint, for example: https://formspree.io/f/xxxxabcd
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xzdadnor';
+
         function openModal() {
             document.getElementById('iosModal').classList.add('active');
         }
@@ -1095,8 +1283,19 @@
             document.getElementById('iosModal').classList.remove('active');
         }
 
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+        }
+
         document.getElementById('iosModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('open');
+            });
         });
 
         // Smooth scroll for anchor links
@@ -1108,6 +1307,63 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
+        });
+
+        const waitlistForm = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const platformError = document.getElementById('platformError');
+        const submitButton = waitlistForm.querySelector('button[type="submit"]');
+
+        waitlistForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            if (!emailInput.value || !/^\S+@\S+\.\S+$/.test(emailInput.value)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            const selectedPlatform = document.querySelector('input[name="platform"]:checked');
+            if (!selectedPlatform) {
+                platformError.style.display = 'block';
+                isValid = false;
+            } else {
+                platformError.style.display = 'none';
+            }
+
+            if (!isValid) return;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailInput.value.trim(),
+                        platform: selectedPlatform.value,
+                        source: 'the-doer-website-waitlist'
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Formspree submission failed');
+                }
+
+                waitlistForm.innerHTML = '<h3>Thank You!</h3><p>You have been added to the waitlist.</p>';
+            } catch (error) {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Notify Me';
+                alert('Something went wrong while submitting. Please try again.');
+                console.error(error);
+            }
         });
     </script>
 </body>
