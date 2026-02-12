@@ -18,12 +18,9 @@
     <link rel="icon" type="image/png" href="images/logo_icon.png">
     <link rel="apple-touch-icon" href="images/logo_icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-
     <style>
         :root {
+            --font-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --gold: #D4C5A0;
             --gold-light: #E8DCC4;
             --green: #E7C77E;
@@ -47,7 +44,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: var(--font-fallback);
             background: var(--black);
             color: var(--white);
             line-height: 1.6;
@@ -91,7 +88,7 @@
         }
 
         .nav-logo span {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: 20px;
             font-weight: 800;
             letter-spacing: 2px;
@@ -144,6 +141,29 @@
             color: var(--white);
             font-size: 24px;
             cursor: pointer;
+        }
+
+        .mobile-waitlist-top {
+            display: none;
+        }
+
+        .mobile-waitlist-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--black);
+            border: none;
+            border-radius: 14px;
+            padding: 16px 18px;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 12px 26px rgba(212, 197, 160, 0.3);
         }
 
         /* Hero Section */
@@ -230,7 +250,7 @@
         }
 
         h1 {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: clamp(48px, 6vw, 72px);
             line-height: 1.1;
             margin-bottom: 24px;
@@ -350,7 +370,7 @@
         }
 
         .section-header h2 {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: clamp(36px, 4vw, 56px);
             font-weight: 800;
             margin-bottom: 20px;
@@ -433,7 +453,7 @@
         }
 
         .showcase-text h2 {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: clamp(32px, 4vw, 48px);
             font-weight: 800;
             margin-bottom: 24px;
@@ -491,7 +511,7 @@
         }
 
         .download h2 {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: clamp(40px, 5vw, 64px);
             font-weight: 800;
             margin-bottom: 20px;
@@ -622,7 +642,7 @@
         }
 
         .footer-logo span {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: 18px;
             font-weight: 800;
             letter-spacing: 1px;
@@ -726,7 +746,7 @@
         }
 
         .modal-content h3 {
-            font-family: 'Syne', sans-serif;
+            font-family: var(--font-fallback);
             font-size: 32px;
             font-weight: 800;
             margin-bottom: 16px;
@@ -960,8 +980,17 @@
                 display: block;
             }
 
+            .mobile-waitlist-top {
+                display: block;
+                position: fixed;
+                top: 76px;
+                left: 16px;
+                right: 16px;
+                z-index: 1100;
+            }
+
             .hero {
-                padding-top: 100px;
+                padding-top: 180px;
             }
 
             h1 {
@@ -1031,6 +1060,12 @@
         </button>
     </nav>
 
+    <div class="mobile-waitlist-top">
+        <button class="mobile-waitlist-btn" type="button" onclick="openModal()">
+            <i class="fas fa-envelope"></i> Join Waitlist
+        </button>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-bg">
@@ -1039,15 +1074,11 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="hero-badge">
-                        <i class="fas fa-circle"></i>
-                        Now Available on Android
-                    </div>
                     <h1>Be a <span class="gradient-text">Doer</span>, Not a Dreamer</h1>
-                    <p class="hero-subtitle">Join fitness challenges, track your workouts, and connect with a global community pushing each other to achieve more. Every step counts.</p>
+                    <p class="hero-subtitle">Join fitness challenges, track your workouts, connect with a global community, and join brand-sponsored challenges to earn rewards.</p>
                     <div class="hero-buttons">
-                        <a href="#download" class="btn btn-primary">
-                            <i class="fab fa-google-play"></i> Download Now
+                        <a href="#download" class="btn btn-primary" onclick="openModal(); return false;">
+                            <i class="fas fa-envelope"></i> Join Waitlist
                         </a>
                         <a href="#features" class="btn btn-secondary">
                             <i class="fas fa-play"></i> Learn More
@@ -1199,13 +1230,13 @@
             <p class="download-subtitle">Download The Doer and join thousands of fitness enthusiasts worldwide.</p>
 
             <div class="store-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.thedoer.app" class="store-btn" target="_blank">
+                <button class="store-btn coming-soon" type="button" aria-disabled="true" title="Android version coming soon">
                     <i class="fab fa-google-play"></i>
                     <div class="store-text">
-                        <span>Get it on</span>
+                        <span>Coming Soon</span>
                         <strong>Google Play</strong>
                     </div>
-                </a>
+                </button>
                 <button class="store-btn coming-soon" type="button" aria-disabled="true" title="iOS version coming soon">
                     <i class="fab fa-apple"></i>
                     <div class="store-text">
