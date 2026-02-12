@@ -745,6 +745,10 @@
             text-align: left;
         }
 
+        .waitlist-success {
+            text-align: center;
+        }
+
         .waitlist-form input {
             width: 100%;
             padding: 14px;
@@ -1357,7 +1361,7 @@
                     throw new Error('Formspree submission failed');
                 }
 
-                waitlistForm.innerHTML = '<h3>Thank You!</h3><p>You have been added to the waitlist.</p>';
+                waitlistForm.innerHTML = '<div class="waitlist-success"><h3>Thank you!</h3><p>You will be updated very soon.</p></div>';
             } catch (error) {
                 submitButton.disabled = false;
                 submitButton.textContent = 'Notify Me';
